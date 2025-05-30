@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html, body {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background-image: url("city.jpeg");
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        #container {
+            display: flex;
+            position: relative;
+            z-index: 1;
+            flex-direction: column;
+            justify-content: center;
+            height: 90vh;
+            width: 85%;
+            margin: 3.5vh auto 0 auto;
+        }
+
+        #fillall {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            z-index: 0;
+        }
+
+        .item {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            flex-basis: 1;
+            margin: 7px;
+            align-items: center;
+            padding: 10px;
+            }
+
+        #timetainer {
+            flex-grow: 0;
+        }
+
+        #searchtainer {
+            flex-grow: 0.9;
+        }
+
+        #linktainer {
+            display: flex;
+            flex-direction: row;
+            flex-grow: 0.6;
+            user-select: none;
+        }
+
+        .link {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: inline-block;
+            margin: 30px;
+            transition: 0.1s ease-in all;
+        }
+
+        .link:hover {
+            text-shadow: 0 0 15px white;
+        }
+
+        #time {
+            display: inline-block;
+            color: white;
+            font-size: 90px;
+            align-self: center;
+            font-weight: 400;
+            user-select: none;
+        }
+
+        footer {
+            display: flex;
+            position: absolute;
+            font-size: 10px;
+            color: white;
+            bottom: 4px;
+            right: 4px;
+            user-select: none;
+            align-items: center;
+            height: 15px;
+        }
+
+        input {
+            width: 400px;
+            height: 46px;
+            color: white;
+            font-size: 20px;
+            background: rgba(114, 114, 114, 0.33);
+            border-radius: 10px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(114, 114, 114, 0.3);
+            outline: none;
+            padding-left: 10px;
+            transition: 0.1s ease-in all;
+        }
+
+        input::placeholder {
+            color: white;
+        }
+    </style>
+    <title>Silk Start</title>
+</head>
+<body>
+    <div id="fillall"></div>
+    <div id="container">
+        <div class="item" id="timetainer"><h1 id="time">Time</h1></div>
+        <div class="item" id="searchtainer"><input type="text" placeholder="Search..." id="search"></div>
+        <div class="item" id="linktainer">
+            <a href="https://github.com" class="link">Github</a>
+            <a href="https://github.com/CommandCrafterx/Silk-Apps" class="link">Silk Apps</a>
+            <a href="https://github.com/CommandCrafterx" class="link">CommandCrafterx</a>
+        </div>
+    </div>
+    <footer>
+        <p id="ver">Silk Start Ver. 1.0</p>
+    </footer>
+    <script>
+        const time = document.getElementById("time");
+
+        function checkTime (time) {
+        if (time < 10) {
+            return "0" + time;
+        }
+        return time;
+        }
+
+        function updateTime () {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            //add a zero when minutes < 10
+            m = checkTime(m);
+            time.innerText = `${h}:${m}`;
+        }
+
+        const searchInput = document.getElementById('search');
+
+        searchInput.addEventListener('keydown', function(event) {
+          if (event.key === 'Enter') {
+            const query = encodeURIComponent(searchInput.value);
+            window.location.href = `https://www.google.com/search?q=${query}`;
+            searchInput.style.scale = "3"
+          }
+        });
+
+        updateTime()
+        setInterval(updateTime, 1000)
+    </script>
+</body>
+</html>
