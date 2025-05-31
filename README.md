@@ -5,7 +5,7 @@ This is a beta startpage for Silk OS and Silk Server devices!
 <ul>
   <li>Real-time digital clock</li>
   <li>Search bar for easy access to Google</li>
-  <li>3 useful shortcuts to websites (e.g. Cockpit)</li>
+  <li>3 useful shortcuts to websites (e.g. Cockpit for administering Linux servers)</li>
 </ul>
 
 # ⚙️ Usage
